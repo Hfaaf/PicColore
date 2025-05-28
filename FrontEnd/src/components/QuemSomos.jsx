@@ -9,9 +9,9 @@ export default function QuemSomos() {
     const [imagens, setImagens] = useState([]);
 
     useEffect(() => {
-        fetch("http://localhost:5000/api/carrousel")
+        fetch(`${import.meta.env.VITE_API_URL}/carrousel`)
             .then(res => res.json())
-            .then(data => setImagens(data.map(img => "http://localhost:5000" + img.url)));
+            .then(data => setImagens(data.map(img => `${import.meta.env.VITE_API_URL.replace('/api','')}${img.url}`)));
     }, []);
 
     return (

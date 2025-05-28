@@ -4,7 +4,7 @@ export default function Agenda() {
   const [eventos, setEventos] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/agenda")
+    fetch(`${import.meta.env.VITE_API_URL}/agenda`)
       .then(res => res.json())
       .then(setEventos);
   }, []);
@@ -40,7 +40,7 @@ export default function Agenda() {
             )}
             {evento.imagem && (
               <img
-                src={`http://localhost:5000${evento.imagem}`}
+                src={`${import.meta.env.VITE_API_URL.replace('/api', '')}${evento.imagem}`}
                 alt={evento.nome}
                 className="rounded-2xl w-full h-40 object-cover mb-2 shadow-md"
               />

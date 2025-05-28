@@ -17,13 +17,13 @@ export default function AdminPanel() {
   const token = localStorage.getItem("token");
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/agenda")
+    fetch(`${import.meta.env.VITE_API_URL}/agenda`)
       .then(res => res.json())
       .then(setEventos);
   }, []);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/carrousel")
+    fetch(`${import.meta.env.VITE_API_URL}/carrousel`)
       .then(res => res.json())
       .then(setCarrouselImages);
   }, []);
@@ -38,7 +38,7 @@ export default function AdminPanel() {
     formData.append("local", local);
     if (imagemFile) formData.append("imagem", imagemFile);
 
-    const res = await fetch("http://localhost:5000/api/agenda", {
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/agenda`, {
       method: "POST",
       headers: {
         "Authorization": "Bearer " + token
@@ -52,7 +52,7 @@ export default function AdminPanel() {
       setMeses("");
       setLocal("");
       setImagemFile(null);
-      fetch("http://localhost:5000/api/agenda")
+      fetch(`${import.meta.env.VITE_API_URL}/agenda`)
         .then(res => res.json())
         .then(setEventos);
     } else {
@@ -61,7 +61,7 @@ export default function AdminPanel() {
   }
 
   async function deletarEvento(id) {
-    const res = await fetch(`http://localhost:5000/api/agenda/${id}`, {
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/agenda/${id}`, {
       method: "DELETE",
       headers: {
         "Authorization": "Bearer " + token
@@ -96,7 +96,7 @@ export default function AdminPanel() {
     formData.append("local", editFields.local);
     if (editFields.imagem) formData.append("imagem", editFields.imagem);
 
-    const res = await fetch(`http://localhost:5000/api/agenda/${ev._id}`, {
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/agenda/${ev._id}`, {
       method: "PUT",
       headers: {
         "Authorization": "Bearer " + token
@@ -106,7 +106,7 @@ export default function AdminPanel() {
     if (res.ok) {
       setEditId(null);
       setEditFields({});
-      fetch("http://localhost:5000/api/agenda")
+      fetch(`${import.meta.env.VITE_API_URL}/agenda`)
         .then(res => res.json())
         .then(setEventos);
     }
@@ -121,7 +121,7 @@ export default function AdminPanel() {
     }
     const formData = new FormData();
     formData.append("image", carrouselFile);
-    const res = await fetch("http://localhost:5000/api/carrousel", {
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/carrousel`, {
       method: "POST",
       headers: {
         "Authorization": "Bearer " + token
@@ -131,7 +131,7 @@ export default function AdminPanel() {
     if (res.ok) {
       setCarrouselMsg("Imagem enviada!");
       setCarrouselFile(null);
-      fetch("http://localhost:5000/api/carrousel")
+      fetch(`${import.meta.env.VITE_API_URL}/carrousel`)
         .then(res => res.json())
         .then(setCarrouselImages);
     } else {
@@ -140,7 +140,7 @@ export default function AdminPanel() {
   }
 
   async function deletarImagem(id) {
-    const res = await fetch(`http://localhost:5000/api/carrousel/${id}`, {
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/carrousel/${id}`, {
       method: "DELETE",
       headers: {
         "Authorization": "Bearer " + token
@@ -213,7 +213,7 @@ export default function AdminPanel() {
                   <span><b>Local:</b> {ev.local}</span>
                   {ev.imagem && (
                     <img
-                      src={`http://localhost:5000${ev.imagem}`}
+                      src={`${import.meta.env.VITE_API_URL.replace('/api','')}${ev.imagem}`}
                       alt={ev.nome}
                       className="w-32 h-20 object-cover rounded my-2 border"
                     />
@@ -267,7 +267,7 @@ export default function AdminPanel() {
         <div className="flex flex-wrap gap-4">
           {carrouselImages.map(img => (
             <div key={img._id} className="relative">
-              <img src={`http://localhost:5000${img.url}`} alt="Carrossel" className="w-32 h-20 object-cover rounded border" />
+              <img src={`${import.meta.env.VITE_API_URL.replace('/api','')}${img.url}`} alt="Carrossel" className="w-32 h-20 object-cover rounded border" />
               <button
                 onClick={() => deletarImagem(img._id)}
                 className="absolute top-1 right-1 bg-red-600 hover:bg-red-700 text-white rounded px-2 py-1 text-xs transition"
