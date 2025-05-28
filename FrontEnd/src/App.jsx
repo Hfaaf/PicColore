@@ -8,6 +8,7 @@ import Licenciados from "./pages/Licenciados";
 import Agenda from "./pages/Agenda";
 import AdminLogin from "./pages/PicAdminL";
 import AdminPanel from "./pages/PicAdminPainel";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 export default function App() {
   return (
@@ -56,7 +57,9 @@ export default function App() {
         <Route 
           path="/painel-adm"
           element={
+            <ProtectedRoute>
             <AdminPanel />
+            </ProtectedRoute>
           }
         />
       </Routes>

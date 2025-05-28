@@ -15,6 +15,12 @@ export default function AdminPanel() {
   const [carrouselFile, setCarrouselFile] = useState(null);
 
   const token = localStorage.getItem("token");
+  
+useEffect(() => {
+  if (!token) {
+    window.location.href = "/adm";
+    return
+  }}, [token])
 
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}/agenda`)
