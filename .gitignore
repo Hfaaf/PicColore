@@ -1,0 +1,27 @@
+# Ignorar arquivos e pastas sensíveis no repositório principal
+
+# Node modules e builds
+node_modules/
+dist/
+dist-ssr/
+
+# Arquivos de ambiente
+.env
+.env.*
+
+# Pastas de scripts sensíveis
+backend/scripts/
+FrontEnd/scripts/
+
+# Outros arquivos e pastas comuns
+*.log
+logs/
+.idea/
+.vscode/
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+uploads/
