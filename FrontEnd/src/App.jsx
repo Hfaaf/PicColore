@@ -9,6 +9,7 @@ import Agenda from "./pages/Agenda";
 import AdminLogin from "./pages/PicAdminL";
 import AdminPanel from "./pages/PicAdminPainel";
 import ProtectedRoute from "./components/ProtectedRoute";
+import Catalogo from "./pages/Catalogo";
 
 export default function App() {
   return (
@@ -24,12 +25,12 @@ export default function App() {
             </>
           }
         />
-        <Route 
+        <Route
           path="/agenda"
           element={
             <>
-            <Agenda />
-            <Footer />
+              <Agenda />
+              <Footer />
             </>
           }
         />
@@ -43,22 +44,31 @@ export default function App() {
           }
         />
         <Route
+          path="/catalogo"
+          element={
+            <>
+              <Catalogo />
+              <Footer />
+            </>
+          }
+        />
+        <Route
           path="/trabalhe-conosco"
           element={
             <TrabalheConosco />
           }
         />
-        <Route 
+        <Route
           path="/adm"
           element={
             <AdminLogin />
           }
         />
-        <Route 
+        <Route
           path="/painel-adm"
           element={
             <ProtectedRoute>
-            <AdminPanel />
+              <AdminPanel />
             </ProtectedRoute>
           }
         />

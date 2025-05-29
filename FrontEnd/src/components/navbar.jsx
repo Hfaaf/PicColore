@@ -93,6 +93,21 @@ export default function NavBar() {
                             </li>
                             <li>
                                 <CustomButton
+                                    bgColor={location.pathname === "/catalogo" ? "#F95D08" : "#7F42CE"}
+                                    hoverColor={location.pathname === "/catalogo" ? "#7F42CE" : "#F95D08"}
+                                    textColor="#fff"
+                                >
+                                    <Link
+                                        to="/catalogo"
+                                        className="block py-2 px-3 rounded-sm md:bg-transparent md:p-0"
+                                        aria-current="page"
+                                    >
+                                        Catalogo
+                                    </Link>
+                                </CustomButton>
+                            </li>
+                            <li>
+                                <CustomButton
                                     bgColor={location.pathname === "/trabalhe-conosco" ? "#F95D08" : "#7F42CE"}
                                     hoverColor={location.pathname === "/trabalhe-conosco" ? "#7F42CE" : "#F95D08"}
                                     textColor="#fff"
