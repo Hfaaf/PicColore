@@ -7,8 +7,8 @@ const router = express.Router();
 const upload = multer({ dest: 'uploads/' });
 
 router.get('/', listCatalogo);
-router.post('/', auth, upload.single('imgsUrl'), addCatalogo);
+router.post('/', auth, upload.single('imagem'), addCatalogo);
 router.delete('/:id', auth, deleteCatalogo);
-router.put('/:id', auth, upload.single('imgsUrl'), updateCatalogo);
+router.put('/:id', auth, upload.single('imagem'), updateCatalogo);
 
 export default router;
