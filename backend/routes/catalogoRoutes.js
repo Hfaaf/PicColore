@@ -6,7 +6,7 @@ import { listCatalogo, addCatalogo, deleteCatalogo, updateCatalogo } from '../co
 const router = express.Router();
 const upload = multer({ dest: 'uploads/' });
 
-router.get('/', auth, listCatalogo);
+router.get('/', listCatalogo);
 router.post('/', auth, upload.single('imgsUrl'), addCatalogo);
 router.delete('/:id', auth, deleteCatalogo);
 router.put('/:id', auth, upload.single('imgsUrl'), updateCatalogo);

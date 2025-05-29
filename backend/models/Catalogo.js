@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 const catalogoSchema = new mongoose.Schema({
     nome: String,
-    imgsUrl: String,
+    imagem: String,
     descricao: String,
 });
 
