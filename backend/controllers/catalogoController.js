@@ -12,7 +12,7 @@ export async function addCatalogo(req, res) {
     try {
         let data = req.body;
         if (req.file) {
-            data = { ...data, imgsUrl: `/uploads/${req.file.filename}` };
+            data = { ...data, imagem: `/uploads/${req.file.filename}` };
         }
         const catalogo = await Catalogo.create(data);
         res.status(201).json(catalogo);
@@ -31,9 +31,11 @@ export async function deleteCatalogo(req, res) {
 export async function updateCatalogo(req, res) {
     try {
         let data = req.body;
+        // updateCatalogo
         if (req.file) {
-            data = { ...data, imgsUrl: `/uploads/${req.file.filename}` };
+            data = { ...data, imagem: `/uploads/${req.file.filename}` };
         }
+
         const catalogo = await Catalogo.findByIdAndUpdate(req.params.id, data, { new: true });
         res.json(catalogo);
     } catch (error) {
