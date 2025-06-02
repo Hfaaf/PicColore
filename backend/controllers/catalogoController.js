@@ -15,7 +15,6 @@ export async function addCatalogo(req, res) {
         if (req.file) {
             data = { ...data, imagem: `/uploads/${req.file.filename}` };
         }
-        // Define a ordem como o último item
         const count = await Catalogo.countDocuments();
         data.order = count;
         const catalogo = await Catalogo.create(data);
@@ -60,6 +59,10 @@ export async function updateOrder(req, res) {
         await Catalogo.bulkWrite(bulkOps);
         res.sendStatus(200);
     } catch (error) {
-        res.status(500).json({ message: "Erro ao atualizar ordem", error });
+        console.error("Erro detalhado:", error);
+        res.status(500).json({ 
+            message: "Erro ao atualizar ordem",
+            error: error.message 
+        });
     }
 }
