@@ -16,7 +16,7 @@ export async function addCatalogo(req, res) {
             data = { ...data, imagem: `/uploads/${req.file.filename}` };
         }
         const count = await Catalogo.countDocuments();
-        data.order = count + 1; // Ajuste para que a nova ordem comece a partir de 1
+        data.order = count + 1;
         const catalogo = await Catalogo.create(data);
         res.status(201).json(catalogo);
     } catch (error) {
@@ -40,10 +40,8 @@ export async function updateCatalogo(req, res) {
             data = { ...data, imagem: `/uploads/${req.file.filename}` };
         }
 
-        // Atualiza o catálogo
         const catalogo = await Catalogo.findByIdAndUpdate(req.params.id, data, { new: true });
 
-        // Se a ordem for fornecida, atualiza a ordem
         if (data.order !== undefined) {
             await Catalogo.updateOne({ _id: req.params.id }, { $set: { order: data.order } });
         }
