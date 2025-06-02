@@ -49,17 +49,20 @@ export async function updateCatalogo(req, res) {
 export async function updateOrder(req, res) {
     try {
         const { order } = req.body;
+        if (!Array.isArray(order)) {
+            return res.status(400).json({ message: "A ordem deve ser um array." });
+        }
         const bulkOps = order.map((id, index) => ({
             updateOne: {
                 filter: { _id: id },
-                update: { $set: { order: index } }
+                update: { $set: { order: index + 1 } }
             }
         }));
-        
+
         await Catalogo.bulkWrite(bulkOps);
         res.sendStatus(200);
     } catch (error) {
-        console.error("Erro detalhado:", error);
+        console.error("Erro ao atualizar ordem:", error);
         res.status(500).json({ 
             message: "Erro ao atualizar ordem",
             error: error.message 
