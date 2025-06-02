@@ -6,6 +6,7 @@ import authRoutes from './routes/authRoutes.js';
 import carrouselRoutes from './routes/carrouselRoutes.js';
 import agendaRoutes from './routes/agendaRoutes.js';
 import catalogoRoutes from './routes/catalogoRoutes.js';
+import emailRoutes from './routes/emailRoutes.js';
 
 dotenv.config();
 const app = express();
@@ -18,6 +19,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/carrousel', carrouselRoutes);
 app.use('/api/agenda', agendaRoutes);
 app.use('/api/catalogo', catalogoRoutes);
+app.use('/api/email', emailRoutes)
 
 mongoose.connect(process.env.MONGODB_URI)
   .then(() => {
