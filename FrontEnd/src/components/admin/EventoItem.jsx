@@ -79,7 +79,7 @@ export default function EventoItem({
                     </span>
                     {ev.imagem && (
                         <img
-                            src={`${import.meta.env.VITE_API_URL.replace("/api", "")}${ev.imagem}`}
+                            src={ev.imagem}
                             alt={ev.nome}
                             className="w-32 h-20 object-cover rounded my-2 border"
                         />

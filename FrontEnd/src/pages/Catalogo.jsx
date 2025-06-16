@@ -2,16 +2,16 @@ import { useEffect, useState } from "react";
 
 export default function Catalogo() {
     const [catalogo, setCatalogo] = useState([]);
-    const [loading, setLoading] = useState(true); // Estado de carregamento
-    const [error, setError] = useState(null); // Estado de erro
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         carregarCatalogo();
     }, []);
 
     async function carregarCatalogo() {
-        setLoading(true); // Inicia o carregamento
-        setError(null); // Reseta o erro
+        setLoading(true);
+        setError(null);
         try {
             const res = await fetch(`${import.meta.env.VITE_API_URL}/catalogo`);
             if (!res.ok) {
@@ -22,18 +22,18 @@ export default function Catalogo() {
             setCatalogo(sortedCatalogo);
         } catch (error) {
             console.error("Erro ao carregar catálogo:", error);
-            setError(error.message); // Define a mensagem de erro
+            setError(error.message);
         } finally {
-            setLoading(false); // Finaliza o carregamento
+            setLoading(false);
         }
     }
 
     if (loading) {
-        return <div>Carregando...</div>; // Mensagem de carregamento
+        return <div>Carregando...</div>;
     }
 
     if (error) {
-        return <div>Erro: {error}</div>; // Mensagem de erro
+        return <div>Erro: {error}</div>;
     }
 
     return (
@@ -49,10 +49,10 @@ export default function Catalogo() {
                     >
                         {evento.imagem && (
                             <img
-                                src={`${import.meta.env.VITE_API_URL.replace('/api', '')}${evento.imagem}`}
-                                alt={evento.nome}
-                                className="rounded-2xl w-full h-40 object-cover mb-2 shadow-md"
-                            />
+  src={evento.imagem}
+  alt={evento.nome}
+  className="rounded-2xl w-full h-40 object-cover mb-2 shadow-md"
+/>
                         )}
                         <div className="text-sky-400 text-2xl font-bold mt-2 text-center">
                             {evento.nome}

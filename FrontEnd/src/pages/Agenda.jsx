@@ -40,7 +40,7 @@ export default function Agenda() {
             )}
             {evento.imagem && (
               <img
-                src={`${import.meta.env.VITE_API_URL.replace('/api', '')}${evento.imagem}`}
+                src={evento.imagem}
                 alt={evento.nome}
                 className="rounded-2xl w-full h-40 object-cover mb-2 shadow-md"
               />

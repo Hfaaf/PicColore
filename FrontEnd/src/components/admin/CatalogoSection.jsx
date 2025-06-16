@@ -169,10 +169,10 @@ export default function CatalogoSection({ token }) {
                       </div>
                       {item.imagem && (
                         <img
-                          src={`${import.meta.env.VITE_API_URL.replace("/api", "")}${item.imagem}`}
-                          alt={item.nome}
-                          className="w-32 h-20 object-cover rounded my-2 border"
-                        />
+  src={item.imagem}
+  alt={item.nome}
+  className="w-32 h-20 object-cover rounded my-2 border"
+/>
                       )}
                       <div className="flex gap-2">
                         <button

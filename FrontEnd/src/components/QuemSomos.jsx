@@ -11,7 +11,7 @@ export default function QuemSomos() {
     useEffect(() => {
         fetch(`${import.meta.env.VITE_API_URL}/carrousel`)
             .then(res => res.json())
-            .then(data => setImagens(data.map(img => `${import.meta.env.VITE_API_URL.replace('/api','')}${img.url}`)));
+            .then(data => setImagens(data.map(img => img.url)));
     }, []);
 
     return (

@@ -75,7 +75,7 @@ export default function CarrosselSection({ token }) {
                 {carrouselImages.map((img) => (
                     <div key={img._id} className="relative">
                         <img
-                            src={`${import.meta.env.VITE_API_URL.replace("/api", "")}${img.url}`}
+                            src={img.url}
                             alt="Carrossel"
                             className="w-32 h-20 object-cover rounded border"
                         />
