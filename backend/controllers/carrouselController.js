@@ -1,7 +1,7 @@
 import CarouselImage from '../models/CarouselImage.js'
 
 export async function uploadImage(req, res) {
-  const url = `/uploads/${req.file.filename}`;
+  const url = req.file && req.file.path ? req.file.path : null;
   const image = await CarouselImage.create({ url });
   res.json(image);
 }

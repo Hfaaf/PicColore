@@ -12,8 +12,8 @@ export async function listCatalogo(req, res) {
 export async function addCatalogo(req, res) {
     try {
         let data = req.body;
-        if (req.file) {
-            data = { ...data, imagem: `/uploads/${req.file.filename}` };
+        if (req.file && req.file.path) {
+            data = { ...data, imagem: req.file.path };
         }
         const count = await Catalogo.countDocuments();
         data.order = count + 1;
@@ -36,8 +36,8 @@ export async function deleteCatalogo(req, res) {
 export async function updateCatalogo(req, res) {
     try {
         let data = req.body;
-        if (req.file) {
-            data = { ...data, imagem: `/uploads/${req.file.filename}` };
+        if (req.file && req.file.path) {
+            data = { ...data, imagem: req.file.path };
         }
 
         const catalogo = await Catalogo.findByIdAndUpdate(req.params.id, data, { new: true });
@@ -49,29 +49,5 @@ export async function updateCatalogo(req, res) {
         res.json(catalogo);
     } catch (error) {
         res.status(500).json({ message: "Erro ao atualizar evento", error });
-    }
-}
-
-export async function updateOrder(req, res) {
-    try {
-        const { order } = req.body;
-        if (!Array.isArray(order)) {
-            return res.status(400).json({ message: "A ordem deve ser um array." });
-        }
-        const bulkOps = order.map((id, index) => ({
-            updateOne: {
-                filter: { _id: id },
-                update: { $set: { order: index + 1 } }
-            }
-        }));
-
-        await Catalogo.bulkWrite(bulkOps);
-        res.sendStatus(200);
-    } catch (error) {
-        console.error("Erro ao atualizar ordem:", error);
-        res.status(500).json({ 
-            message: "Erro ao atualizar ordem",
-            error: error.message 
-        });
     }
 }

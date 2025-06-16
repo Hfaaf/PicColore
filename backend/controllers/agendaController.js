@@ -7,8 +7,8 @@ export async function listEventos(req, res) {
 
 export async function addEvento(req, res) {
   let data = req.body;
-  if (req.file) {
-    data = { ...data, imagem: `/uploads/${req.file.filename}` };
+  if (req.file && req.file.path) {
+    data = { ...data, imagem: req.file.path };
   }
   const evento = await Evento.create(data);
   res.json(evento);
@@ -21,8 +21,8 @@ export async function deleteEvento(req, res) {
 
 export async function updateEvento(req, res) {
   let data = req.body;
-  if (req.file) {
-    data = { ...data, imagem: `/uploads/${req.file.filename}` };
+  if (req.file && req.file.path) {
+    data = { ...data, imagem: req.file.path };
   }
   const evento = await Evento.findByIdAndUpdate(req.params.id, data, { new: true });
   res.json(evento);
