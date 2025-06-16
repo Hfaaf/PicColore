@@ -75,6 +75,8 @@ export default function App() {
           }
         />
       </Routes>
+      <Analytics />
+      <SpeedInsights />
     </Router>
   );
 }
