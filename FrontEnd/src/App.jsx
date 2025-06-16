@@ -15,70 +15,66 @@ import Catalogo from "./pages/Catalogo";
 
 export default function App() {
   return (
-    <Analytics>
-      <SpeedInsights>
-        <Router>
-          <NavBar />
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <>
-                  <HomePage />
-                  <Footer />
-                </>
-              }
-            />
-            <Route
-              path="/agenda"
-              element={
-                <>
-                  <Agenda />
-                  <Footer />
-                </>
-              }
-            />
-            <Route
-              path="/licenciados"
-              element={
-                <>
-                  <Licenciados />
-                  <Footer />
-                </>
-              }
-            />
-            <Route
-              path="/catalogo"
-              element={
-                <>
-                  <Catalogo />
-                  <Footer />
-                </>
-              }
-            />
-            <Route
-              path="/trabalhe-conosco"
-              element={
-                <TrabalheConosco />
-              }
-            />
-            <Route
-              path="/adm"
-              element={
-                <AdminLogin />
-              }
-            />
-            <Route
-              path="/painel-adm"
-              element={
-                <ProtectedRoute>
-                  <AdminPanel />
-                </ProtectedRoute>
-              }
-            />
-          </Routes>
-        </Router>
-      </SpeedInsights>
-    </Analytics>
+    <Router>
+      <NavBar />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <>
+              <HomePage />
+              <Footer />
+            </>
+          }
+        />
+        <Route
+          path="/agenda"
+          element={
+            <>
+              <Agenda />
+              <Footer />
+            </>
+          }
+        />
+        <Route
+          path="/licenciados"
+          element={
+            <>
+              <Licenciados />
+              <Footer />
+            </>
+          }
+        />
+        <Route
+          path="/catalogo"
+          element={
+            <>
+              <Catalogo />
+              <Footer />
+            </>
+          }
+        />
+        <Route
+          path="/trabalhe-conosco"
+          element={
+            <TrabalheConosco />
+          }
+        />
+        <Route
+          path="/adm"
+          element={
+            <AdminLogin />
+          }
+        />
+        <Route
+          path="/painel-adm"
+          element={
+            <ProtectedRoute>
+              <AdminPanel />
+            </ProtectedRoute>
+          }
+        />
+      </Routes>
+    </Router>
   );
 }
